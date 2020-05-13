@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Application</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+</head>
+<body>
+    <div id="loginForm">
+        <h3 id="loginTitle">LOGIN</h3>
+        <input type="text" id="txtUser" placeholder="Username" required />
+        <input type="button" id="btnLogin" value="SIGN IN" class="btn btn-primary btn-sm">
+    </div>
+
+
+    <div class="col-sm-3 col-sm-offset-4 frame" id="body-chat">
+        <ul id="thread"></ul>
+
+        <div>
+            <div class="msj-rta macro">                       
+                <div class="text text-r" style="background:whitesmoke !important">
+                    <input id="message" class="submit_on_enter" type="text" placeholder="Public message">
+                </div> 
+            </div>
+            <div style="padding:10px;">             
+                <form name="contact-form" style="padding-right: 15px;">
+                    <input type="submit"  class="btn btn-primary" value="send">
+                </form>
+            </div>           
+        </div>
+    </div> 
+
+    <div id="listonline">
+        <div id="boxTitle">Users Online</div>
+        <div id="boxContent"></div>
+        <div></div>
+
+    </div>
+
+    <div id="QLroom">
+        <div id="roomTitle">Available Rooms</div>
+        <div id="dsRoom"></div>
+        <div id="roomAt">You are at</div>
+        <div id="roomHienTai">Current Room</div>
+        <div>
+            <input type="text" id="txtRoom" placeholder="Input room"/>
+            <input type="button" id="btnTaoRoom" value="Load Room" class="btn btn-success"/>
+            <input type="button" id="btnLeaveRoom" value="Leave Room" class="btn btn-danger"/>
+        </div>
+    </div>
+
+    <div id="privateChat" class="col-sm-3 col-sm-offset-4 frame">
+        <ul id="private"></ul>
+        <div>
+            <div class="msj-rta macro">
+                <div class="text text-r" style="background:whitesmoke !important">
+                    <input type="text" id="txtMessage" placeholder="Private message">
+                </div>
+            </div>
+            <input type="button" id="btnChat" value="Send" class="btn btn-primary">
+        </div>     
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src ="client.js"></script>
+
+</body>
+<script>
+    var you = {};
+    you.avatar = "https://cellphones.com.vn/sforum/wp-content/plugins/wp-user-avatars/wp-user-avatars/assets/images/mystery.jpg";
+</script>
+</html>
