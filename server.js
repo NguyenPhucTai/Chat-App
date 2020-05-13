@@ -93,49 +93,31 @@ io.on('connection', function(client){
         var DuplicateRoom = 0;
         for(r in client.adapter.rooms){
             if(r == roomName){
-                //Chỉ cần check được số người  
-                // console.log("room ton tai");
-                DuplicateRoom =1;
-               
-            }else{
-                // console.log("room khong ton tai" + r);
-                //Cần tạo room mới và số lượng người 
-                
+                DuplicateRoom =1;  
             }
         }
         if(DuplicateRoom != 0){
-            // console.log("run Deup = true");
             client.emit("room-ton-tai")
         }
         else{
-            // console.log("run Deup = false");
             client.emit("room-khong-co")
         }    
     })
 
     client.on("join-room", function(data){
-        //join room can phai co number
-        // console.log("join-rôom")
         let filterRoom = arrRoom.filter(function(room){
             return room.name == data;
         });
-        // console.log("set filterroom = data"+filterRoom);
         for(room in client.adapter.rooms){
-            // console.log(room)
             if(data == room){
                 if(client.adapter.rooms[data].length < client.adapter.rooms[data].limit){
-                    // console.log("vao duoc")
                     client.join(room);
                     client.Phong=data;
                     client.emit("Hide-load-room");
                     client.emit("server-send-room", arrRoom);
                     client.broadcast.emit("server-send-room", arrRoom); 
-            
                     client.emit("server-send-room-socket", data);
-
                 }else{
-                    // console.log(client.adapter.rooms[data].limit);
-                    // console.log("khong vao duoc");
                     client.emit("reject-by-limited-members");
                     client.emit("server-send-room", arrRoom);
                     client.broadcast.emit("server-send-room", arrRoom);
@@ -145,8 +127,6 @@ io.on('connection', function(client){
     });
 
     client.on("tao-room", function(data, numUser){
-        //co number nhung chua luu
-        // console.log("tao-room");
         var number = parseInt(numUser);    
         client.join(data);
         client.Phong=data;
@@ -178,7 +158,7 @@ io.on('connection', function(client){
             }
         }
 
-        if(check == true){ // phong co ton tai
+        if(check == true){ 
             client.emit("server-send-room", arrRoom);
             client.broadcast.emit("server-send-room", arrRoom);
             client.emit("Hide-leave-room");
